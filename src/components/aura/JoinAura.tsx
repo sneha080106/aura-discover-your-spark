@@ -52,7 +52,7 @@ export function JoinAura() {
     setErrors(found);
     if (Object.keys(found).length > 0) {
       // Move focus to the first invalid field for screen-reader users.
-      const first = document.getElementById(Object.keys(found)[0]);
+      const first = document.getElementById(Object.keys(found)[0] ?? "");
       first?.focus();
       return;
     }

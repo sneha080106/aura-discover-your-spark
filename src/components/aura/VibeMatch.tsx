@@ -15,7 +15,8 @@ const factors = [
 /** Two artist cards drift toward each other and a glowing link forms. */
 export function VibeMatch() {
   const reduced = useReducedMotion();
-  const [a, b] = [artists[0], artists[3]];
+  const a = artists[0]!;
+  const b = artists[3]!;
 
   const drift = (from: number) =>
     reduced
@@ -86,8 +87,8 @@ export function VibeMatch() {
           </motion.div>
 
           <motion.div
-            initial={reduced ? undefined : { opacity: 0, scale: 0.6 }}
-            whileInView={reduced ? undefined : { opacity: 1, scale: 1 }}
+            initial={reduced ? false : { opacity: 0, scale: 0.6 }}
+            whileInView={reduced ? {} : { opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.8, delay: 0.7 }}
             className="relative"
