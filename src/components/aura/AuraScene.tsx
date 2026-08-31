@@ -84,7 +84,7 @@ function Sparks({ count }: { count: number }) {
 export default function AuraScene({ simplified = false }: { simplified?: boolean }) {
   return (
     <Canvas
-      camera={{ position: [0, 0, 5], fov: 45 }}
+      camera={{ position: [0, 0, 8], fov: 45 }}
       dpr={simplified ? 1 : [1, 1.75]}
       gl={{ antialias: !simplified, powerPreference: "high-performance" }}
       aria-hidden="true"
@@ -93,7 +93,9 @@ export default function AuraScene({ simplified = false }: { simplified?: boolean
       <pointLight position={[4, 3, 4]} intensity={40} color="#a855f7" />
       <pointLight position={[-4, -2, 2]} intensity={30} color="#3b82f6" />
       <Float speed={1.1} rotationIntensity={0.25} floatIntensity={0.6}>
+        <group position={[1.6, 0.4, 0]} scale={0.95}>
         <Orb interactive={!simplified} />
+        </group>
       </Float>
       <Sparks count={simplified ? 120 : 420} />
     </Canvas>

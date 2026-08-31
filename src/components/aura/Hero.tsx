@@ -36,7 +36,7 @@ export function Hero() {
       <div className="aura-blob animate-aura-pulse right-[-15%] bottom-[-20%] h-[38rem] w-[38rem] bg-accent" />
 
       {/* 3D layer */}
-      <div className="pointer-events-none absolute inset-0 opacity-90" aria-hidden="true">
+      <div className="pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(70%_60%_at_70%_45%,black,transparent)]" aria-hidden="true">
         {show3d ? (
           <Suspense fallback={null}>
             <AuraScene simplified={simplified} />
