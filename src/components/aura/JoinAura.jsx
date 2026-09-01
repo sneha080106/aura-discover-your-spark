@@ -58,7 +58,7 @@ export function JoinAura() {
   };
   const fieldClass = (key) =>
     `w-full rounded-2xl border bg-secondary/50 px-4 py-3 text-sm placeholder:text-muted-foreground focus:outline-none ${errors[key] ? "border-destructive" : "border-input focus:border-primary"}`;
-  const Field = ({ id, label, children }) => (
+  const Field = ({ id, label, children, error }) => (
     <div>
       <label
         htmlFor={id}
@@ -67,9 +67,9 @@ export function JoinAura() {
         {label}
       </label>
       {children}
-      {errors[id] && (
+      {error && (
         <p id={`${id}-error`} role="alert" className="mt-1.5 text-xs text-destructive">
-          {errors[id]}
+          {error}
         </p>
       )}
     </div>
@@ -124,17 +124,17 @@ export function JoinAura() {
               </div>
             ) : (
               <form onSubmit={onSubmit} noValidate className="grid gap-5 sm:grid-cols-2">
-                <Field id="fullName" label="Full Name">
+                <Field id="fullName" label="Full Name" error={errors.fullName}>
                   <input {...aria("fullName")} value={values.fullName} onChange={set("fullName")} />
                 </Field>
-                <Field id="stageName" label="Stage Name">
+                <Field id="stageName" label="Stage Name" error={errors.stageName}>
                   <input
                     {...aria("stageName")}
                     value={values.stageName}
                     onChange={set("stageName")}
                   />
                 </Field>
-                <Field id="age" label="Age">
+                <Field id="age" label="Age" error={errors.age}>
                   <input
                     {...aria("age")}
                     type="number"
@@ -143,10 +143,10 @@ export function JoinAura() {
                     onChange={set("age")}
                   />
                 </Field>
-                <Field id="city" label="City">
+                <Field id="city" label="City" error={errors.city}>
                   <input {...aria("city")} value={values.city} onChange={set("city")} />
                 </Field>
-                <Field id="email" label="Email">
+                <Field id="email" label="Email" error={errors.email}>
                   <input
                     {...aria("email")}
                     type="email"
@@ -154,7 +154,7 @@ export function JoinAura() {
                     onChange={set("email")}
                   />
                 </Field>
-                <Field id="primarySkill" label="Primary Skill">
+                <Field id="primarySkill" label="Primary Skill" error={errors.primarySkill}>
                   <select
                     {...aria("primarySkill")}
                     value={values.primarySkill}
@@ -168,7 +168,7 @@ export function JoinAura() {
                     ))}
                   </select>
                 </Field>
-                <Field id="musicStyle" label="Music Style">
+                <Field id="musicStyle" label="Music Style" error={errors.musicStyle}>
                   <input
                     {...aria("musicStyle")}
                     placeholder="e.g. Indie pop, ghazal, R&B"
@@ -176,7 +176,7 @@ export function JoinAura() {
                     onChange={set("musicStyle")}
                   />
                 </Field>
-                <Field id="languages" label="Languages">
+                <Field id="languages" label="Languages" error={errors.languages}>
                   <input
                     {...aria("languages")}
                     placeholder="e.g. Hindi, Tamil, English"
@@ -185,7 +185,7 @@ export function JoinAura() {
                   />
                 </Field>
                 <div className="sm:col-span-2">
-                  <Field id="about" label="Tell Us About Yourself">
+                  <Field id="about" label="Tell Us About Yourself" error={errors.about}>
                     <textarea
                       {...aria("about")}
                       rows={5}
@@ -195,7 +195,11 @@ export function JoinAura() {
                   </Field>
                 </div>
                 <div className="sm:col-span-2">
-                  <Field id="socialLink" label="Instagram / YouTube Link (optional)">
+                  <Field
+                    id="socialLink"
+                    label="Instagram / YouTube Link (optional)"
+                    error={errors.socialLink}
+                  >
                     <input
                       {...aria("socialLink")}
                       placeholder="https://"
