@@ -23,24 +23,24 @@ bun run build   # production build
 ```
 src/
 ├── components/aura/
-│   ├── Navbar.tsx        sticky nav + animated mobile menu
-│   ├── Hero.tsx          full-screen hero, lazy-loads the 3D scene
-│   ├── AuraScene.tsx     R3F orb + particle field (client-only)
-│   ├── Mission.tsx       why AURA exists
-│   ├── Journey.tsx       Discover → Connect → Match → Form → Develop → Debut
-│   ├── ArtistCard.tsx    single artist card
-│   ├── DiscoverTalent.tsx artist grid
-│   ├── VibeMatch.tsx     creative-match animation
-│   ├── WhyAura.tsx       benefits grid
-│   ├── Vision.tsx        two-column vision story
-│   ├── Future.tsx        Today → Tomorrow → Future
-│   ├── JoinAura.tsx      validated application form
-│   ├── Footer.tsx        links, socials, newsletter
-│   ├── Reveal.tsx        reduced-motion aware scroll reveal
-│   └── SectionHeading.tsx
-├── data/artists.ts       mock artist data (typed `Artist[]`)
-├── lib/applications.ts   application submission layer
-├── routes/index.tsx      page composition + SEO head
+│   ├── Navbar.jsx        sticky nav + animated mobile menu
+│   ├── Hero.jsx          full-screen hero, lazy-loads the 3D scene
+│   ├── AuraScene.jsx     R3F orb + particle field (client-only)
+│   ├── Mission.jsx       why AURA exists
+│   ├── Journey.jsx       Discover → Connect → Match → Form → Develop → Debut
+│   ├── ArtistCard.jsx    single artist card
+│   ├── DiscoverTalent.jsx artist grid
+│   ├── VibeMatch.jsx     creative-match animation
+│   ├── WhyAura.jsx       benefits grid
+│   ├── Vision.jsx        two-column vision story
+│   ├── Future.jsx        Today → Tomorrow → Future
+│   ├── JoinAura.jsx      validated application form
+│   ├── Footer.jsx        links, socials, newsletter
+│   ├── Reveal.jsx        reduced-motion aware scroll reveal
+│   └── SectionHeading.jsx
+├── data/artists.js       mock artist data (typed `Artist[]`)
+├── lib/applications.js   application submission layer
+├── routes/index.jsx      page composition + SEO head
 └── styles.css            design tokens, utilities, animations
 ```
 
@@ -53,8 +53,8 @@ src/
 
 ## Connecting a real backend later
 
-- **Applications**: `src/lib/applications.ts` is the single seam. Swap the localStorage write in `submitApplication` for a TanStack `createServerFn` call or an API request — no component changes needed.
+- **Applications**: `src/lib/applications.js` is the single seam. Swap the localStorage write in `submitApplication` for a TanStack `createServerFn` call or an API request — no component changes needed.
 - **Database**: enable Lovable Cloud to get Postgres, then store applications in an `artist_applications` table with row-level security (public insert, admin read).
 - **Auth**: add sign-up/login with Lovable Cloud auth, then gate artist profile editing behind an `_authenticated` route layout.
-- **Real artist profiles**: replace `src/data/artists.ts` with a loader that fetches the same `Artist[]` shape; `ArtistCard` needs no changes.
+- **Real artist profiles**: replace `src/data/artists.js` with a loader that fetches the same `Artist[]` shape; `ArtistCard` needs no changes.
 - **File/video uploads**: use Cloud storage buckets for audio/video demos and store the returned URL on the artist row.
